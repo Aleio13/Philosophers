@@ -6,37 +6,47 @@
 #    By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/29 12:26:24 by almatsch          #+#    #+#              #
-#    Updated: 2025/08/29 12:30:04 by almatsch         ###   ########.fr        #
+#    Updated: 2025/08/29 17:06:11 by almatsch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philo
+NAME				=	philo
 
-SRCS		= 
-OBJS		= $(SRCS:.c=.o)
-BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
+COMPILE				=	cc
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-AR			= ar rcs
-RM			= rm -f
+FLAGS				=	-Wall -Wextra -Werror -o3 -pthread
 
-all:		$(NAME)
+COLOR_RESET			=	\033[0m
+COLOR_CYAN			=	\033[36m
+COLOR_GREEN			=	\033[32m
+COLOR_RED			=	\033[31m
 
-$(NAME):	$(OBJS)
-			$(AR) $(NAME) $(OBJS)
-test:		$(NAME) test.c
-			$(CC) $(CFLAGS) -o test_exec test.c $(NAME)
 
-test_clean:
-			 $(RM) test_exec
+SRCS				=	philo.c philo_error.c philo_init.c philo_utils.c 
+
+
+OBJS				=	$(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME):			$(INCLUDE) $(OBJS)
+					@$(COMPILE) $(FLAGS) -o $(NAME) $(OBJS) $(LINUXFLAGS) $(LEAKS_SANITIZER)
+					@echo "$(COLOR_CYAN)Kompilierung abgeschlossen: $(NAME)$(COLOR_RESET)"
+
+%.o: %.c
+					@$(COMPILE) $(FLAGS) -c $< -o $@
+					@echo "$(COLOR_GREEN)Kompilierung abgeschlossen: $@$(COLOR_RESET)"
 
 clean:
-			$(RM) $(OBJS) $(BONUS_OBJS)
+					@echo "$(COLOR_RED)Cleanup philo.$(COLOR_RESET)"
+					@rm -f $(OBJS)
+					@echo "$(COLOR_GREEN)Cleanup completed.$(COLOR_RESET)"
 
-fclean:		clean
-			$(RM) $(NAME)
+fclean:				clean
+					@echo "$(COLOR_RED)Start Full-Clean.$(COLOR_RESET)"
+					@rm -f $(NAME)
+					@echo "$(COLOR_GREEN)Full-Clean completed.$(COLOR_RESET)"
 
-re:			fclean all
+re:					fclean all
 
-.PHONY:		all clean fclean re bonus test test_clean
+.PHONY:				all clean fclean re

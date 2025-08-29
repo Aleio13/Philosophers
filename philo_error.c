@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:09:10 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 15:16:17 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/08/29 18:17:20 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	invalid_msg(void)
 {
-	printf("Arguments must be a positiv int\n");
+	printf("Error: all arguments have to be a positiv int\n");
 }
 
 void	wrong_args()

@@ -6,32 +6,32 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 15:04:52 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:57:40 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const	char *str)
+long	ft_atol(const	char *str)
 {
-	int	i;
-	int	count;
-	int	nbr;
+	int		i;
+	long	nbr;
+	long	count;
 
 	i = 0;
 	nbr = 0;
 	count = 1;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v' || \
 			str[i] == '\n' || str[i] == '\r' || str[i] == '\f')
-	{
 		i++;
-	}
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
 			count = count * -1;
 		i++;
 	}
+	if (str[i] == '\0')
+		return (2147483648);
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = nbr * 10;
@@ -39,6 +39,16 @@ int	ft_atoi(const	char *str)
 		i++;
 	}
 	return (nbr * count);
+}
+
+int	check_atol(const char *str)
+{
+	long	check;
+
+	check = ft_atol(str);
+	if (check < INT_MIN || check > INT_MAX)
+		return (0);
+	return (1);
 }
 
 int	ft_isdigit(int i)

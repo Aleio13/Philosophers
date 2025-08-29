@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 15:18:53 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/08/29 18:13:20 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	is_input_valid(char **arv)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (arv[i])
 	{
 		j = 0;
-		while (arv[i][j])
+		while (arv[i][j] && i > 0)
 		{
 			while (arv[i][j] == ' ' || arv[i][j] == '+')
 				j++;
@@ -29,6 +29,8 @@ int	is_input_valid(char **arv)
 				return (0);
 			j++;
 		}
+		if (!check_atol(arv[i]) && i > 0)
+			return (0);
 		i++;
 	}
 	return (1);
@@ -38,15 +40,18 @@ t_rules	*init_rules(int arc, char **arv)
 {
 	t_rules	*rules;
 
-	if (!is_input_valid)
+	rules = malloc(sizeof (t_rules));
+	if (!rules)
+		return (NULL);
+	if (!is_input_valid(arv))
 		return (invalid_msg(), NULL);
-	rules->num_of_philos = ft_atoi(arv[1]);
-	rules->time_to_die = ft_atoi(arv[2]);
-	rules->time_to_eat = ft_atoi(arv[3]);
-	rules->time_to_sleep = ft_atoi(arv[4]);
+	rules->num_of_philos = ft_atol(arv[1]);
+	rules->time_to_die = ft_atol(arv[2]);
+	rules->time_to_eat = ft_atol(arv[3]);
+	rules->time_to_sleep = ft_atol(arv[4]);
 	if (arc == 6)
-		rules->must_eat = ft_atoi(arv[6]);
+		rules->must_eat = ft_atol(arv[5]);
 	else
-		rules->must_eat = 0;
+		rules->must_eat = -1;
 	return (rules);
 }
