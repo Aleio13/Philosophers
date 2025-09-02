@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 16:57:40 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:48:59 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ long	ft_atol(const	char *str)
 		i++;
 	}
 	return (nbr * count);
-}
-
-int	check_atol(const char *str)
-{
-	long	check;
-
-	check = ft_atol(str);
-	if (check < INT_MIN || check > INT_MAX)
-		return (0);
-	return (1);
 }
 
 int	ft_isdigit(int i)

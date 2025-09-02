@@ -6,7 +6,7 @@
 #    By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/29 12:26:24 by almatsch          #+#    #+#              #
-#    Updated: 2025/08/29 17:06:11 by almatsch         ###   ########.fr        #
+#    Updated: 2025/09/02 17:48:43 by almatsch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ COLOR_GREEN			=	\033[32m
 COLOR_RED			=	\033[31m
 
 
-SRCS				=	philo.c philo_error.c philo_init.c philo_utils.c 
+SRCS				=	philo.c philo_error.c philo_init.c philo_utils.c philos_helpers.c
 
 
 OBJS				=	$(SRCS:.c=.o)

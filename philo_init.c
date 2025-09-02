@@ -6,35 +6,11 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 18:13:20 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:19:36 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-
-int	is_input_valid(char **arv)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (arv[i])
-	{
-		j = 0;
-		while (arv[i][j] && i > 0)
-		{
-			while (arv[i][j] == ' ' || arv[i][j] == '+')
-				j++;
-			if (!ft_isdigit((int)arv[i][j]))
-				return (0);
-			j++;
-		}
-		if (!check_atol(arv[i]) && i > 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 t_rules	*init_rules(int arc, char **arv)
 {
@@ -54,4 +30,17 @@ t_rules	*init_rules(int arc, char **arv)
 	else
 		rules->must_eat = -1;
 	return (rules);
+}
+
+t_table	*init_table(t_rules *rules)
+{
+	t_table			*table;
+
+	table = malloc(sizeof(t_table));
+	table->forks = malloc(sizeof(pthread_mutex_t) * rules->num_of_philos);
+	if (!table->forks)
+		return (NULL);
+	table->philos = //TODO init_philo function proto: init_philo(t_rules *rules, pthread_mutex_t *forks);
+	table->end_sim  = 0;
+	pthread_mutex_init(&table->p_lock, NULL);
 }

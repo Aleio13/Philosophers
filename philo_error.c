@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:09:10 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 18:17:20 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:33:42 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	invalid_msg(void)
 
 void	wrong_args()
 {
-	printf("Invalid Arguments\n");
+	printf ("Invalid Arguments\n");
 	printf("Please enter the following\n");
 	printf("1. Number of Philo\n");
 	printf("2. Time to die in ms\n");

@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/08/29 16:57:48 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:13:54 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <pthread.h>
 # include <string.h>
 
@@ -31,14 +32,30 @@ typedef struct s_rules
 
 typedef struct	s_philo
 {
-	t_rules	rules;
-	int		id;
-}	t_philo;
+	t_rules			*rules;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	long			*l_meal;
+	pthread_t		*tid;
+	int				*n_meals;
+	int				hungry;
+	int				id;
+}					t_philo;
+
+typedef struct	s_table
+{
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	*p_lock;
+	long			start_sim;
+	int				end_sim;
+}					t_table;
 
 t_rules	*init_rules(int arc, char **arv);
 int		ft_isdigit(int i);
 long	ft_atol(const	char *str);
 int		check_atol(const char *str);
+int		is_input_valid(char **arv);
 void	wrong_args();
 void	invalid_msg(void);
 void	print_check(t_rules *rules);
