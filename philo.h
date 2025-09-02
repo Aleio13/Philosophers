@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 18:13:54 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:16:41 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_table
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*p_lock;
+	pthread_mutex_t	*state;
 	long			start_sim;
 	int				end_sim;
 }					t_table;
@@ -54,6 +55,7 @@ typedef struct	s_table
 t_rules	*init_rules(int arc, char **arv);
 int		ft_isdigit(int i);
 long	ft_atol(const	char *str);
+long	get_time(void);
 int		check_atol(const char *str);
 int		is_input_valid(char **arv);
 void	wrong_args();

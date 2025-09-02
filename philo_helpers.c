@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_helpers.c                                   :+:      :+:    :+:   */
+/*   philo_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:48:08 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 17:55:16 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:16:26 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h" 
+#include "philo.h"
 
 int	is_input_valid(char **arv)
 {
@@ -44,4 +44,15 @@ int	check_atol(const char *str)
 	if (check < INT_MIN || check > INT_MAX)
 		return (0);
 	return (1);
+}
+
+long	get_time(void)
+{
+	long			time;
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (-1);
+	time = tv.tv_sec * 1000 + (tv.tv_usec / 1000);
+	return (time);
 }
