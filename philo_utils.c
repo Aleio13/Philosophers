@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 17:48:59 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:21:27 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ long	ft_atol(const	char *str)
 		i++;
 	}
 	return (nbr * count);
+}
+
+long	get_time(void)
+{
+	long			time;
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (-1);
+	time = tv.tv_sec * 1000 + (tv.tv_usec / 1000);
+	return (time);
 }
 
 int	ft_isdigit(int i)
