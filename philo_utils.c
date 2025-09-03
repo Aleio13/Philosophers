@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 22:21:27 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:32:01 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ long	get_time(void)
 
 	if (gettimeofday(&tv, NULL))
 		return (-1);
-	time = tv.tv_sec * 1000 + (tv.tv_usec / 1000);
+	time = tv.tv_sec * (long)1000 + (tv.tv_usec / (long)1000);
 	return (time);
 }
 

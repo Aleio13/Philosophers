@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 22:16:41 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:56:15 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_rules
 	int	time_to_sleep;
 	int	num_of_philos;
 	int	must_eat;
-}	t_rules;
+}		t_rules;
 
 typedef struct	s_philo
 {
@@ -46,13 +46,15 @@ typedef struct	s_table
 {
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*p_lock;
+	pthread_mutex_t	*print;
 	pthread_mutex_t	*state;
 	long			start_sim;
 	int				end_sim;
 }					t_table;
 
 t_rules	*init_rules(int arc, char **arv);
+t_table	*init_table(t_rules *rules);
+t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo);
 int		ft_isdigit(int i);
 long	ft_atol(const	char *str);
 long	get_time(void);
