@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/03 18:01:14 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:43:38 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_table	*init_table(t_rules *rules)
 {
 	t_table			*table;
 	int				i;
-	struct timeval	tv;
 
 	table = malloc(sizeof(t_table));
 	if (!table)

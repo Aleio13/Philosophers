@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/03 17:56:15 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:43:07 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_philo
 	t_rules			*rules;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	long			*l_meal;
+	long			l_meal;
 	pthread_t		*tid;
 	int				*n_meals;
 	int				hungry;
@@ -46,8 +46,8 @@ typedef struct	s_table
 {
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*print;
-	pthread_mutex_t	*state;
+	pthread_mutex_t	print;
+	pthread_mutex_t	state;
 	long			start_sim;
 	int				end_sim;
 }					t_table;
