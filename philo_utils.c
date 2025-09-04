@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/03 22:37:36 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:15:07 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,24 @@ int	ft_isdigit(int i)
 		return (1);
 	return (0);
 }
+
+int	ft_sleep(long ms)
+{
+	long	start;
+	long	now;
+
+	start = get_time();
+	if (start < 0)
+		return (0);
+	while (1)
+	{
+		now = get_time();
+		if (now < 0)
+			return (0);
+		if ((now - start) >= ms)
+			break ;
+		usleep(500);
+	}
+	return (1);
+}
+

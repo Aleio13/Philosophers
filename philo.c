@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:28:36 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/03 22:57:42 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/04 20:38:04 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,27 @@ void	cleanup_table(t_table *table, t_rules *rules)
 	int				n_philos;
 
 	i = 0;
-	if (!table)
-		return ;
-	n_philos = table->philos->rules->num_of_philos;
-	if (table->forks)
-	{
-		while (i < n_philos)
-		{
-			pthread_mutex_destroy(&table->forks[i]);
-			i++;
-		}
-		free(table->forks);
-	}
-	pthread_mutex_destroy(&table->print);
-	pthread_mutex_destroy(&table->state);
-	if (table->philos)
-		free(table->philos);
 	if (rules)
 		free(rules);
 	if (table)
-		free(table);
+	{
+		n_philos = table->philos->rules->num_of_philos;
+		if (table->forks)
+		{
+			while (i < n_philos)
+			{
+				pthread_mutex_destroy(&table->forks[i]);
+				i++;
+			}
+			free(table->forks);
+		}
+		pthread_mutex_destroy(&table->print);
+		pthread_mutex_destroy(&table->state);
+		if (table->philos)
+			free(table->philos);
+		if (table)
+			free(table);
+	}
 }
 
 int main(int arc, char **arv)

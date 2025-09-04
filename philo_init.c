@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/03 22:43:38 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:59:01 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_table	*init_table(t_rules *rules)
 	}
 	table->end_sim  = 0;
 	table->philos = init_philo(rules, table->forks, rules->num_of_philos);
-	table->start_sim = get_time();
 	pthread_mutex_init(&table->print, NULL);
 	pthread_mutex_init(&table->state, NULL);
 	return (table);

@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:48:08 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/02 22:21:19 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:57:05 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,47 @@ int	check_atol(const char *str)
 	if (check < INT_MIN || check > INT_MAX)
 		return (0);
 	return (1);
+}
+
+int	print_status(t_philo *philo,t_table *table, char *status)
+{
+	long	time;
+
+	pthread_mutex_lock(&table->print);
+	if (table->end_sim)
+	{
+		pthread_mutex_unlock(&table->print);
+		return (0);
+	}
+	time = get_time(); - table->start_sim;
+	printf("%ld %d %s\n", time, philo->id + 1, status);
+	pthread_mutex_unlock(&table->print);
+	return (1);
+}
+
+int	check_philo(t_philo *philo, t_table *table)
+{
+	t_rules	*rules;
+	long	time;
+	int		is_full;
+
+	is_full = 1;
+	rules = philo->rules;
+	time = get_time();
+	if (time < 0)
+		error_msg("get_time failed", table);
+	pthread_mutex_lock(&table->state);
+	if (time - philo->l_meal > rules->time_to_die)
+	{
+		table->end_sim = 1;
+		print_status(philo, table, "that dude died bruh !");
+		is_full = 0;
+	}
+	else if (rules->must_eat > 0 && \
+	philo->n_meals <rules->must_eat)
+	{
+		is_full = 0;
+	}
+	pthread_mutex_unlock(&table->state);
+	return (is_full);
 }
