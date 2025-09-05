@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:48:08 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/04 23:57:05 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:32:13 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	print_status(t_philo *philo,t_table *table, char *status)
 		pthread_mutex_unlock(&table->print);
 		return (0);
 	}
-	time = get_time(); - table->start_sim;
+	time = get_time() - table->start_sim;
 	printf("%ld %d %s\n", time, philo->id + 1, status);
 	pthread_mutex_unlock(&table->print);
 	return (1);

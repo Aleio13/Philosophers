@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:28:36 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/04 20:38:04 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:32:57 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,31 @@ int main(int arc, char **arv)
 	}
 	rules = init_rules(arc, arv);
 	if (!rules)
-		return (1);
+		return (0);
 	table = init_table(rules);
-	print_check_rules(rules);
-	print_check_philos(table->philos, rules);
-	print_check_table(table);
+	if (table)
+		start_simulation(table);
 	cleanup_table(table, rules);
 	return (0);
 }
+
+// int main(int arc, char **arv)
+// {
+// 	t_rules	*rules;
+// 	t_table	*table;
+
+// 	if (arc < 5 || arc > 6)
+// 	{
+// 		wrong_args();
+// 		return (1);
+// 	}
+// 	rules = init_rules(arc, arv);
+// 	if (!rules)
+// 		return (1);
+// 	table = init_table(rules);
+// 	print_check_rules(rules);
+// 	print_check_philos(table->philos, rules);
+// 	print_check_table(table);
+// 	cleanup_table(table, rules);
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/04 19:59:01 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:48:11 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo)
 	i = 0;
 	while (i < n_philo)
 	{
-		philos[i].id = i;
+		philos[i].id = i + 1;
 		philos[i].n_meals = 0;
 		philos[i].rules = rules;
 		philos[i].hungry = 1;
@@ -76,8 +76,8 @@ t_table	*init_table(t_rules *rules)
 		i++;
 	}
 	table->end_sim  = 0;
-	table->philos = init_philo(rules, table->forks, rules->num_of_philos);
 	pthread_mutex_init(&table->print, NULL);
 	pthread_mutex_init(&table->state, NULL);
+	table->philos = init_philo(rules, table->forks, rules->num_of_philos);
 	return (table);
 }
