@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:09:10 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/10 22:25:32 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 00:06:52 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	wrong_args(void)
 {
 	printf("Invalid Arguments\n");
 	printf("Please enter the following\n");
-	printf("1. Number of Philo\n");
-	printf("2. Time to die in ms\n");
-	printf("3. Time to eat in ms\n");
-	printf("4. Time to sleep in ms\n");
+	printf("1. Number of Philo <= 200\n");
+	printf("2. Time to die in ms > 60\n");
+	printf("3. Time to eat in ms > 60\n ");
+	printf("4. Time to sleep in ms > 60\n");
 	printf("Optional: Number of times philosopers must eat\n");
 }

@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/10 23:17:04 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 00:21:17 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_rules
 typedef struct s_philo
 {
 	t_rules				*rules;
-	// t_state			state;
 	pthread_t			tid;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
