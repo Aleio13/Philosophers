@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:28:36 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/11 00:12:48 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 00:28:34 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int	main(int arc, char **arv)
 	rules = init_rules(arc, arv);
 	if (!rules)
 		return (0);
-	if (!check_rules(rules))
-	{
-		wrong_args();
-		free(rules);
-		return (0);
-	}
+	// if (!check_rules(rules))
+	// {
+	// 	wrong_args();
+	// 	free(rules);
+	// 	return (0);
+	// }
 	table = init_table(rules);
 	if (table)
 		start_simulation(table);

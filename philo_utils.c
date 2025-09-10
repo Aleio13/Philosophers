@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:47:25 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/10 23:52:08 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 00:28:20 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,30 @@ int	ft_sleep(long ms)
 	return (1);
 }
 
-int	check_all_philos(t_table *table, t_rules *rules)
-{
-	int	i;
-	int	ate;
+// int	check_all_philos(t_table *table, t_rules *rules)
+// {
+// 	int	i;
+// 	int	ate;
 
-	ate = 1;
-	i = -1;
-	while (++i < rules->num_of_philos)
-	{
-		pthread_mutex_lock(&table->state);
-		if (table->philos->n_meals < rules->must_eat)
-			ate = 0;
-		pthread_mutex_unlock(&table->state);
-		if (!check_philo(&table->philos[i], table))
-			return (0);
-		if (should_end(table))
-			return (-1);
-	}
-	if (rules->must_eat > 0 && ate)
-	{
-		pthread_mutex_lock(&table->state);
-		table->end_sim = 1;
-		pthread_mutex_unlock(&table->state);
-		return (1);
-	}
-	return (0);
-}
+// 	ate = 1;
+// 	i = -1;
+// 	while (++i < rules->num_of_philos)
+// 	{
+// 		pthread_mutex_lock(&table->state);
+// 		if (table->philos->n_meals < rules->must_eat)
+// 			ate = 0;
+// 		pthread_mutex_unlock(&table->state);
+// 		if (!check_philo(&table->philos[i], table))
+// 			return (0);
+// 		if (should_end(table))
+// 			return (-1);
+// 	}
+// 	if (rules->must_eat > 0 && ate)
+// 	{
+// 		pthread_mutex_lock(&table->state);
+// 		table->end_sim = 1;
+// 		pthread_mutex_unlock(&table->state);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
