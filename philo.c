@@ -6,66 +6,62 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:28:36 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/05 19:32:57 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/10 23:49:37 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_check_rules(t_rules *rules)
-{
-	printf("--------------RULE CHECKER:-----------------------------------------\n");
-	printf("Number of Philo: %d\n", rules->num_of_philos);
-	printf("Time of death: %d\n", rules->time_to_die);
-	printf("Time to eat: %d\n", rules->time_to_eat);
-	printf("time to sleep: %d\n", rules->time_to_sleep);
-	printf("Number of time to eat: %d\n", rules->must_eat);
-	printf("--------------RULE CHECKER:-----------------------------------------\n");
-}
+// void	print_check_rules(t_rules *rules)
+// {
+// 	printf("--------------RULE CHECKER:-----------------------------------------\n");
+// 	printf("Number of Philo: %d\n", rules->num_of_philos);
+// 	printf("Time of death: %d\n", rules->time_to_die);
+// 	printf("Time to eat: %d\n", rules->time_to_eat);
+// 	printf("time to sleep: %d\n", rules->time_to_sleep);
+// 	printf("Number of time to eat: %d\n", rules->must_eat);
+// 	printf("--------------RULE CHECKER:-----------------------------------------\n");
+// }
 
-void	print_check_philos(t_philo *philos, t_rules *rules)
-{
-	int	n_philos;
-	int	i;
+// void	print_check_philos(t_philo *philos, t_rules *rules)
+// {
+// 	int	n_philos;
+// 	int	i;
 
-	i = 0;
-	n_philos = rules->num_of_philos;
-	printf("-----------PHILO CHECK---------------------------------------------\n");
-	while (i < n_philos)
-	{
-		printf("ID: %d\n", philos[i].id);
-		printf("Hungry: %d\n", philos[i].hungry);
-		printf("Last meal: %ld\n", philos[i].l_meal);
-		printf("left fork: %p\n", philos[i].l_fork);
-		printf("Right fork: %p\n", philos[i].r_fork);
-		printf("\n");
-		i++;
-	}
-	printf("-----------PHILO CHECK---------------------------------------------\n");
+// 	i = 0;
+// 	n_philos = rules->num_of_philos;
+// 	printf("-----------PHILO CHECK---------------------------------------------\n");
+// 	while (i < n_philos)
+// 	{
+// 		printf("ID: %d\n", philos[i].id);
+// 		printf("Hungry: %d\n", philos[i].hungry);
+// 		printf("Last meal: %ld\n", philos[i].l_meal);
+// 		printf("left fork: %p\n", philos[i].l_fork);
+// 		printf("Right fork: %p\n", philos[i].r_fork);
+// 		printf("\n");
+// 		i++;
+// 	}
+// 	printf("-----------PHILO CHECK---------------------------------------------\n");
+// }
 
-}
-
-void	print_check_table(t_table *table)
-{
-	printf("-----------TABLE CHECK---------------------------------------------\n");
-	printf("Num of philos: %d\n", table->philos->rules->num_of_philos);
-	printf("Num of forks: %d\n", table->philos->rules->num_of_philos);
-	printf("Start Simulation: %ld\n", table->start_sim);
-	printf("End sim: %d\n", table->end_sim);
-	printf("State adress: %p\n", (void *)&table->state);
-	printf("Print address: %p\n", (void *)&table->print);
-	printf("-----------TABLE CHECK---------------------------------------------\n");
-
-}
+// void	print_check_table(t_table *table)
+// {
+// 	printf("-----------TABLE CHECK---------------------------------------------\n");
+// 	printf("Num of philos: %d\n", table->philos->rules->num_of_philos);
+// 	printf("Num of forks: %d\n", table->philos->rules->num_of_philos);
+// 	printf("Start Simulation: %ld\n", table->start_sim);
+// 	printf("End sim: %d\n", table->end_sim);
+// 	printf("State adress: %p\n", (void *)&table->state);
+// 	printf("Print address: %p\n", (void *)&table->print);
+// 	printf("-----------TABLE CHECK---------------------------------------------\n");
+// }
 
 void	cleanup_table(t_table *table, t_rules *rules)
 {
-	int				i;
-	int				n_philos;
+	int	i;
+	int	n_philos;
 
 	i = 0;
-	if (rules)
-		free(rules);
 	if (table)
 	{
 		n_philos = table->philos->rules->num_of_philos;
@@ -85,9 +81,11 @@ void	cleanup_table(t_table *table, t_rules *rules)
 		if (table)
 			free(table);
 	}
+	if (rules)
+		free(rules);
 }
 
-int main(int arc, char **arv)
+int	main(int arc, char **arv)
 {
 	t_rules	*rules;
 	t_table	*table;

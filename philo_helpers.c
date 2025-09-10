@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 17:48:08 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/05 19:32:13 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/10 22:25:17 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,32 @@ int	check_atol(const char *str)
 	return (1);
 }
 
-int	print_status(t_philo *philo,t_table *table, char *status)
+int	print_status(t_philo *philo, t_table *table, char *status)
 {
 	long	time;
 
 	pthread_mutex_lock(&table->print);
-	if (table->end_sim)
-	{
-		pthread_mutex_unlock(&table->print);
-		return (0);
-	}
 	time = get_time() - table->start_sim;
-	printf("%ld %d %s\n", time, philo->id + 1, status);
+	printf("%ld %d %s\n", time, philo->id, status);
 	pthread_mutex_unlock(&table->print);
 	return (1);
+}
+
+int	should_end(t_table *table)
+{
+	int	end;
+
+	pthread_mutex_lock(&table->state);
+	end = table->end_sim;
+	pthread_mutex_unlock(&table->state);
+	return (end);
 }
 
 int	check_philo(t_philo *philo, t_table *table)
 {
 	t_rules	*rules;
 	long	time;
-	int		is_full;
 
-	is_full = 1;
 	rules = philo->rules;
 	time = get_time();
 	if (time < 0)
@@ -77,14 +80,10 @@ int	check_philo(t_philo *philo, t_table *table)
 	if (time - philo->l_meal > rules->time_to_die)
 	{
 		table->end_sim = 1;
+		pthread_mutex_unlock(&table->state);
 		print_status(philo, table, "that dude died bruh !");
-		is_full = 0;
-	}
-	else if (rules->must_eat > 0 && \
-	philo->n_meals <rules->must_eat)
-	{
-		is_full = 0;
+		return (0);
 	}
 	pthread_mutex_unlock(&table->state);
-	return (is_full);
+	return (1);
 }

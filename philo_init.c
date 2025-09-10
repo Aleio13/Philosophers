@@ -6,17 +6,17 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 14:38:37 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/05 19:48:11 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/10 22:25:09 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#include "philo.h"
 
 t_rules	*init_rules(int arc, char **arv)
 {
 	t_rules	*rules;
 
-	rules = malloc(sizeof (t_rules));
+	rules = malloc(sizeof(t_rules));
 	if (!rules)
 		return (NULL);
 	if (!is_input_valid(arv))
@@ -34,7 +34,6 @@ t_rules	*init_rules(int arc, char **arv)
 	return (rules);
 }
 
-
 t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo)
 {
 	int		i;
@@ -42,7 +41,7 @@ t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo)
 
 	philos = malloc(sizeof(t_philo) * n_philo);
 	if (!philos)
-	return (NULL);
+		return (NULL);
 	i = 0;
 	while (i < n_philo)
 	{
@@ -52,7 +51,6 @@ t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo)
 		philos[i].hungry = 1;
 		philos[i].l_fork = &forks[i];
 		philos[i].r_fork = &forks[(i + 1) % n_philo];
-		philos[i].l_meal = get_time();
 		i++;
 	}
 	return (philos);
@@ -60,8 +58,8 @@ t_philo	*init_philo(t_rules *rules, pthread_mutex_t *forks, int n_philo)
 
 t_table	*init_table(t_rules *rules)
 {
-	t_table			*table;
-	int				i;
+	t_table	*table;
+	int		i;
 
 	table = malloc(sizeof(t_table));
 	if (!table)
@@ -75,7 +73,7 @@ t_table	*init_table(t_rules *rules)
 		pthread_mutex_init(&table->forks[i], NULL);
 		i++;
 	}
-	table->end_sim  = 0;
+	table->end_sim = 0;
 	pthread_mutex_init(&table->print, NULL);
 	pthread_mutex_init(&table->state, NULL);
 	table->philos = init_philo(rules, table->forks, rules->num_of_philos);
