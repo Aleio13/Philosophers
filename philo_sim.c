@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 19:34:54 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/11 00:26:58 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 02:49:37 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*start_routine(void *arg)
 	philo = (t_philo *)arg;
 	table = philo->rules->table;
 	if (philo->id % 2 == 0)
-		ft_sleep(philo->rules->time_to_sleep);
+		ft_sleep(philo->rules->time_to_eat);
 	while (1)
 	{
 		if (should_end(table) || !go_eat(table, philo))
@@ -37,35 +37,15 @@ void	*start_monitor(void *arg)
 {
 	t_table	*table;
 	t_rules	*rules;
-	int		ate;
-	int		i;
+	int		status;
 
 	table = (t_table *)arg;
 	rules = table->philos->rules;
 	while (!should_end(table))
 	{
-		ate = 1;
-		i = -1;
-		while (++i < rules->num_of_philos)
-		{
-			pthread_mutex_lock(&table->state);
-			if (table->philos->n_meals < rules->must_eat)
-				ate = 0;
-			pthread_mutex_unlock(&table->state);
-			if (!check_philo(&table->philos[i], table))
-				ate = 0;
-			if (should_end(table))
-				break ;
-		}
-		if (should_end(table))
+		status = check_all_philos(table, rules);
+		if (status != 0)
 			break ;
-		if (rules->must_eat > 0 && ate)
-		{
-			pthread_mutex_lock(&table->state);
-			table->end_sim = 1;
-			pthread_mutex_unlock(&table->state);
-			break ;
-		}
 	}
 	return (NULL);
 }

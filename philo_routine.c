@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:21:00 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/11 00:25:47 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 02:57:16 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,25 @@ int	eating_process(t_philo *philo, t_table *table)
 
 int	go_eat(t_table *table, t_philo *philo)
 {
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*first;
+	pthread_mutex_t	*second;
 
-	l_fork = philo->l_fork;
-	r_fork = philo->r_fork;
 	if (philo->rules->num_of_philos == 1)
+		return (one_philo(table));
+	if (philo->id % 2 == 1)
 	{
-		while (!should_end(table))
-			usleep(100);
-		return (0);
-	}
-	if (philo->id % 2 == 0)
-	{
-		if (!take_fork(l_fork, philo, table, "has taken a fork"))
-			return (0);
-		if (!take_fork(r_fork, philo, table, "has taken a fork"))
-			return (pthread_mutex_unlock(l_fork), 0);
+		first = philo->l_fork;
+		second = philo->r_fork;
 	}
 	else
 	{
-		if (!take_fork(r_fork, philo, table, "has taken a fork"))
-			return (0);
-		if (!take_fork(l_fork, philo, table, "has taken a fork"))
-			return (pthread_mutex_unlock((r_fork)), 0);
+		first = philo->r_fork;
+		second = philo->l_fork;
 	}
+	if (!take_fork(first, philo, table, "has taken a fork"))
+		return (0);
+	if (!take_fork(second, philo, table, "has taken a fork"))
+		return (pthread_mutex_unlock(first), 0);
 	return (eating_process(philo, table));
 }
 

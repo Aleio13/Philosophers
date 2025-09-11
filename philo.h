@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:26:28 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/11 00:21:17 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 02:12:32 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ int						go_eat(t_table *table, t_philo *philo);
 int						go_think(t_table *table, t_philo *philo);
 int						go_sleep(t_table *table, t_philo *philo);
 int						check_all_philos(t_table *table, t_rules *rules);
+int						one_philo(t_table *table);
 
 #endif

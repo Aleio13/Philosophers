@@ -6,7 +6,7 @@
 /*   By: almatsch <almatsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:09:10 by almatsch          #+#    #+#             */
-/*   Updated: 2025/09/11 00:06:52 by almatsch         ###   ########.fr       */
+/*   Updated: 2025/09/11 02:39:14 by almatsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	invalid_msg(void)
 {
-	printf("Error: all arguments have to be a positiv int\n");
+	printf("Error: invalid input\n");
 }
 
 void	error_msg(char *msg, t_table *table)
